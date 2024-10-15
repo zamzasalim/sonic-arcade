@@ -14,6 +14,8 @@
 - Get Smartwallet : https://arcade.soniclabs.com/
 
 ## Sebelum menjalankan bot, Pastikan kalian memainkan semua game sekali dulu
+- Jangan lupa juga Claim Faucet $TOKEN
+- ![Deskripsi gambar](https://raw.githubusercontent.com/zamzasalim/sonic-arcade/main/xxx.png)
 
 ### Auto Install & Run Bot For VPS
 ```
