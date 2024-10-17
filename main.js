@@ -1,79 +1,77 @@
 import { privateKey } from './wallet.js';
-import a0_0x31c372 from './core.js';
+import { proxyList } from './proxy.js';
+import a0_0x31881c from './core.js';
 import { Helper } from './helper.js';
-import a0_0x44df79 from './logger.js';
-import a0_0x2a97b9 from './twist.js';
-
-async function operation(_0x51c204, _0x4ac656, _0x3d3664) {
-  const _0x3ef4b2 = new a0_0x31c372(_0x51c204, _0x4ac656, _0x3d3664);
+import a0_0x47ed64 from './logger.js';
+async function operation(_0x5310a6, _0x14a08b, _0x3bc245) {
+  const _0x4a209a = new a0_0x31881c(_0x5310a6, _0x14a08b, _0x3bc245);
   try {
-    await _0x3ef4b2.connectWallet();
-    await _0x3ef4b2.getBalance();
-    await _0x3ef4b2.getPoint();
-    await _0x3ef4b2.connectSonicDapps();
-    await _0x3ef4b2.getUserInfo();
-    // Removed referral-related code: await _0x3ef4b2.getUserInvite();
-    await _0x3ef4b2.createSession();
-    await _0x3ef4b2.permitContract();
-
-    while (_0x3ef4b2.limit == false) {
-      await _0x3ef4b2.playPlinko();
-      await _0x3ef4b2.getPoint();
+    await _0x4a209a.connectWallet();
+    await _0x4a209a.getBalance();
+    await _0x4a209a.getPoint(true);
+    await _0x4a209a.connectSonicDapps();
+    await _0x4a209a.getUserInfo();
+    await _0x4a209a.getUserInvite();
+    await _0x4a209a.createSession();
+    await _0x4a209a.permitContract();
+    while (_0x4a209a.limit == false) {
+      await _0x4a209a.playPlinko();
+      await _0x4a209a.getPoint();
     }
-
-    while (_0x3ef4b2.wheelLimit == false) {
-      await _0x3ef4b2.playWheel();
-      await _0x3ef4b2.getPoint();
+    while (_0x4a209a.wheelLimit == false) {
+      await _0x4a209a.playWheel();
+      await _0x4a209a.getPoint();
     }
-
-    while (_0x3ef4b2.mineLimit == false) {
-      await _0x3ef4b2.playMine();
-      await _0x3ef4b2.getPoint();
+    while (_0x4a209a.mineLimit == false) {
+      await _0x4a209a.playMine();
+      await _0x4a209a.getPoint();
     }
-
-    await Helper.delay(43200000, _0x51c204, "Account " + (privateKey.indexOf(_0x51c204) + 1) + " Processing Done, Delaying for " + Helper.msToTime(43200000), _0x3ef4b2);
-    await operation(_0x51c204, _0x4ac656, _0x3d3664);
-  } catch (_0x3bcc5c) {
-    if (_0x3bcc5c.message) {
-      await Helper.delay(10000, _0x51c204, "Error : " + _0x3bcc5c.message + ", Retry again after 10 Seconds", _0x3ef4b2);
+    const _0x4963d1 = privateKey.find(_0x1e6bb8 => _0x1e6bb8.pk == _0x5310a6);
+    const _0x5bf050 = privateKey.indexOf(_0x4963d1);
+    await Helper.delay(43200000, _0x5310a6, "Account " + (_0x5bf050 + 0x1) + " Processing Done, Delaying for " + Helper.msToTime(43200000), _0x4a209a);
+    await operation(_0x5310a6, _0x14a08b, _0x3bc245);
+  } catch (_0x54ffd5) {
+    if (_0x54ffd5.message) {
+      await Helper.delay(0x2710, _0x5310a6, "Error : " + _0x54ffd5.message + ", Retry again after 10 Second", _0x4a209a);
     } else {
-      await Helper.delay(10000, _0x51c204, "Error :" + JSON.stringify(_0x3bcc5c) + ", Retry again after 10 Seconds", _0x3ef4b2);
+      await Helper.delay(0x2710, _0x5310a6, "Error :" + JSON.stringify(_0x54ffd5) + ", Retry again after 10 Second", _0x4a209a);
     }
-    await operation(_0x51c204, _0x4ac656, _0x3d3664);
+    await operation(_0x5310a6, _0x14a08b, _0x3bc245);
   }
 }
-
 async function startBot() {
-  return new Promise(async (_0x40222a, _0x237873) => {
+  return new Promise(async (_0x78005b, _0x42b8bc) => {
     try {
-      a0_0x44df79.info("BOT STARTED");
-      const _0x359441 = [];
-
-      for (const _0x343bce of privateKey) {
-        // Hapus referensi ke proxyList
-        _0x359441.push(operation(_0x343bce.pk, _0x343bce.smartWalletAddress, undefined)); // Menggunakan undefined untuk parameter ketiga
+      a0_0x47ed64.info("BOT STARTED");
+      const _0x5b2fa1 = [];
+      if (proxyList.length != privateKey.length && proxyList.length != 0x0) {
+        throw Error("You Have " + privateKey.length + " Accounts But Provide " + proxyList.length);
       }
-
-      await Promise.all(_0x359441);
-      _0x40222a();
-    } catch (_0x4664f9) {
-      a0_0x44df79.info("BOT STOPPED");
-      a0_0x44df79.error(JSON.stringify(_0x4664f9));
-      _0x237873(_0x4664f9);
+      for (const _0x177973 of privateKey) {
+        if (!_0x177973.pk) {
+          throw Error("Your accounts.js is malformed, please fix it first, see accounts_tmp.js for the format");
+        }
+        const _0x154402 = privateKey.indexOf(_0x177973);
+        const _0x2d36a0 = proxyList[_0x154402];
+        _0x5b2fa1.push(operation(_0x177973.pk, _0x177973.smartWalletAddress, _0x2d36a0));
+      }
+      await Promise.all(_0x5b2fa1);
+      _0x78005b();
+    } catch (_0x4b4164) {
+      a0_0x47ed64.info("BOT STOPPED");
+      a0_0x47ed64.error(JSON.stringify(_0x4b4164));
+      _0x42b8bc(_0x4b4164);
     }
   });
 }
-
 (async () => {
   try {
-    a0_0x44df79.clear();
-    a0_0x44df79.info('');
+    a0_0x47ed64.clear();
+    a0_0x47ed64.info('');
     Helper.ASC();
     await startBot();
-  } catch (_0x4b89c0) {
-    a0_0x2a97b9.clear();
-    a0_0x2a97b9.clearInfo();
-    console.log("Error During executing bot", _0x4b89c0);
+  } catch (_0x11fe99) {
+    console.log("Error During executing bot", _0x11fe99);
     await startBot();
   }
 })();
