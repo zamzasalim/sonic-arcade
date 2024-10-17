@@ -1,5 +1,5 @@
 import { createLogger, format, transports } from 'winston';
-import a7_0x4ee2c8 from 'fs';
+import a8_0x526e9b from 'fs';
 const {
   combine,
   timestamp,
@@ -7,11 +7,11 @@ const {
   colorize
 } = format;
 const customFormat = printf(({
-  level: _0x278411,
-  message: _0x84a27c,
-  timestamp: _0x4d537e
+  level: _0x5390d2,
+  message: _0x45b540,
+  timestamp: _0x33f2d1
 }) => {
-  return _0x4d537e + " [" + _0x278411 + "]: " + _0x84a27c;
+  return _0x33f2d1 + " [" + _0x5390d2 + "]: " + _0x45b540;
 });
 class Logger {
   constructor() {
@@ -27,29 +27,29 @@ class Logger {
         'filename': "log/app.log"
       })],
       'rejectionHandlers': [new transports.File({
-        'filename': "log/app.log"
+        'filename': 'log/app.log'
       })]
     });
   }
-  ['info'](_0x56f8bb) {
-    this.logger.info(_0x56f8bb);
+  ["info"](_0x15e80d) {
+    this.logger.info(_0x15e80d);
   }
-  ["warn"](_0x5c5446) {
-    this.logger.warn(_0x5c5446);
+  ["warn"](_0x2f3152) {
+    this.logger.warn(_0x2f3152);
   }
-  ["error"](_0x5b1123) {
-    this.logger.error(_0x5b1123);
+  ["error"](_0x23269b) {
+    this.logger.error(_0x23269b);
   }
-  ["debug"](_0x41586b) {
-    this.logger.debug(_0x41586b);
+  ['debug'](_0xf21483) {
+    this.logger.debug(_0xf21483);
   }
-  ["setLevel"](_0x2af251) {
-    this.logger.level = _0x2af251;
+  ['setLevel'](_0x2f17a6) {
+    this.logger.level = _0x2f17a6;
   }
   ["clear"]() {
-    a7_0x4ee2c8.truncate("log/app.log", 0x0, _0x43f684 => {
-      if (_0x43f684) {
-        this.logger.error("Failed to clear the log file: " + _0x43f684.message);
+    a8_0x526e9b.truncate("log/app.log", 0x0, _0x69dac8 => {
+      if (_0x69dac8) {
+        this.logger.error("Failed to clear the log file: " + _0x69dac8.message);
       } else {
         this.logger.info("Log file cleared");
       }
