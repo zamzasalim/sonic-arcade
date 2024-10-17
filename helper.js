@@ -1,101 +1,115 @@
-import 'fs';
-import 'path';
-import a6_0x5b2244 from 'bip39';
-import 'querystring';
-import a6_0x41b3b8 from './twist.js';
-import a6_0x33ebee from 'moment-timezone';
+import a7_0x5e8584 from 'bip39';
+import a7_0x454b76 from 'moment-timezone';
+import { ethers } from 'ethers';
+import a7_0x456ab9 from './twist.js';
 export class Helper {
-  static ['delay'] = (_0x2a340d, _0x5ef415, _0x320465, _0x4e84f8) => {
-    return new Promise(_0xf3375c => {
-      let _0x182959 = _0x2a340d;
-      if (_0x5ef415 != undefined) {
-        a6_0x41b3b8.log(_0x320465, _0x5ef415, _0x4e84f8, "Delaying for " + this.msToTime(_0x2a340d));
+  static ['delay'] = (_0x401711, _0x5eaae0, _0x1ded7b, _0x3bfc8e) => {
+    return new Promise(_0x3cb786 => {
+      let _0x500428 = _0x401711;
+      if (_0x5eaae0 != undefined) {
+        a7_0x456ab9.log(_0x1ded7b, _0x5eaae0, _0x3bfc8e, "Delaying for " + this.msToTime(_0x401711));
       } else {
-        a6_0x41b3b8.info("Delaying for " + this.msToTime(_0x2a340d));
+        a7_0x456ab9.info("Delaying for " + this.msToTime(_0x401711));
       }
-      const _0x45c861 = setInterval(() => {
-        _0x182959 -= 0x3e8;
-        if (_0x5ef415 != undefined) {
-          a6_0x41b3b8.log(_0x320465, _0x5ef415, _0x4e84f8, "Delaying for " + this.msToTime(_0x182959));
+      const _0x452328 = setInterval(() => {
+        _0x500428 -= 0x3e8;
+        if (_0x5eaae0 != undefined) {
+          a7_0x456ab9.log(_0x1ded7b, _0x5eaae0, _0x3bfc8e, "Delaying for " + this.msToTime(_0x500428));
         } else {
-          a6_0x41b3b8.info("Delaying for " + this.msToTime(_0x182959));
+          a7_0x456ab9.info("Delaying for " + this.msToTime(_0x500428));
         }
-        if (_0x182959 <= 0x0) {
-          clearInterval(_0x45c861);
-          _0xf3375c();
+        if (_0x500428 <= 0x0) {
+          clearInterval(_0x452328);
+          _0x3cb786();
         }
       }, 0x3e8);
       setTimeout(async () => {
-        clearInterval(_0x45c861);
-        await a6_0x41b3b8.clearInfo();
-        if (_0x5ef415) {
-          a6_0x41b3b8.log(_0x320465, _0x5ef415, _0x4e84f8);
+        clearInterval(_0x452328);
+        await a7_0x456ab9.clearInfo();
+        if (_0x5eaae0) {
+          a7_0x456ab9.log(_0x1ded7b, _0x5eaae0, _0x3bfc8e);
         }
-        _0xf3375c();
-      }, _0x2a340d);
+        _0x3cb786();
+      }, _0x401711);
     });
   };
-  static ['randomUserAgent']() {
-    const _0x41468f = ["Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.80 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 EdgiOS/125.2535.60 Mobile/15E148 Safari/605.1.15", "Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 EdgA/124.0.2478.104", "Mozilla/5.0 (Linux; Android 10; Pixel 3 XL) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 EdgA/124.0.2478.104", "Mozilla/5.0 (Linux; Android 10; VOG-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 OPR/76.2.4027.73374", "Mozilla/5.0 (Linux; Android 10; SM-N975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 OPR/76.2.4027.73374"];
-    return _0x41468f[Math.floor(Math.random() * _0x41468f.length)];
+  static ["randomUserAgent"]() {
+    const _0x51a142 = ["Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.80 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 EdgiOS/125.2535.60 Mobile/15E148 Safari/605.1.15", "Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 EdgA/124.0.2478.104", "Mozilla/5.0 (Linux; Android 10; Pixel 3 XL) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 EdgA/124.0.2478.104", "Mozilla/5.0 (Linux; Android 10; VOG-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 OPR/76.2.4027.73374", "Mozilla/5.0 (Linux; Android 10; SM-N975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.113 Mobile Safari/537.36 OPR/76.2.4027.73374"];
+    return _0x51a142[Math.floor(Math.random() * _0x51a142.length)];
   }
-  static ['readTime'](_0x3db6d6) {
-    const _0x3e8362 = a6_0x33ebee.unix(_0x3db6d6);
-    return _0x3e8362.format("YYYY-MM-DD HH:mm:ss");
+  static ["readTime"](_0x42ad83) {
+    const _0x4e2907 = a7_0x454b76.unix(_0x42ad83);
+    return _0x4e2907.format("YYYY-MM-DD HH:mm:ss");
   }
-  static ["getCurrentTimestamp"]() {
-    const _0x576a80 = a6_0x33ebee().tz("Asia/Singapore").unix();
-    return _0x576a80.toString();
+  static ['getCurrentTimestamp']() {
+    const _0x34bd6d = a7_0x454b76().tz('Asia/Singapore').unix();
+    return _0x34bd6d.toString();
   }
-  static ["random"](_0x55c675, _0x19b642) {
-    const _0x236522 = Math.floor(Math.random() * (_0x19b642 - _0x55c675 + 0x1)) + _0x55c675;
-    return _0x236522;
+  static ["random"](_0x4dc578, _0x4a2b75) {
+    const _0x338ec7 = Math.floor(Math.random() * (_0x4a2b75 - _0x4dc578 + 0x1)) + _0x4dc578;
+    return _0x338ec7;
   }
-  static ["msToTime"](_0xf152e3) {
-    const _0x456f0c = Math.floor(_0xf152e3 / 3600000);
-    const _0x1b58be = _0xf152e3 % 3600000;
-    const _0x3e4b14 = Math.floor(_0x1b58be / 60000);
-    const _0x1499a5 = _0x1b58be % 60000;
-    const _0x482dcf = Math.round(_0x1499a5 / 0x3e8);
-    return _0x456f0c + " Hours " + _0x3e4b14 + " Minutes " + _0x482dcf + " Seconds";
+  static ["msToTime"](_0x481ec7) {
+    const _0x513a1f = Math.floor(_0x481ec7 / 3600000);
+    const _0x1b5b14 = _0x481ec7 % 3600000;
+    const _0x5f4950 = Math.floor(_0x1b5b14 / 60000);
+    const _0x34dc9c = _0x1b5b14 % 60000;
+    const _0x5e1082 = Math.round(_0x34dc9c / 0x3e8);
+    return _0x513a1f + " Hours " + _0x5f4950 + " Minutes " + _0x5e1082 + " Seconds";
   }
-  static ["generateRandomString"](_0x585b36) {
-    let _0x4301b8 = '';
-    const _0x4f22cf = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".length;
-    for (let _0x180153 = 0x0; _0x180153 < _0x585b36; _0x180153++) {
-      _0x4301b8 += "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Math.floor(Math.random() * _0x4f22cf));
+  static ['generateRandomString'](_0x424f42) {
+    let _0x149bf0 = '';
+    const _0x50f9fc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.length;
+    for (let _0x2c5319 = 0x0; _0x2c5319 < _0x424f42; _0x2c5319++) {
+      _0x149bf0 += 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'.charAt(Math.floor(Math.random() * _0x50f9fc));
     }
-    return _0x4301b8;
+    return _0x149bf0;
   }
-  static ["serializeBigInt"] = _0x3dd491 => {
-    return JSON.parse(JSON.stringify(_0x3dd491, (_0x3a9a08, _0x965120) => typeof _0x965120 === "bigint" ? _0x965120.toString() : _0x965120));
+  static ["serializeBigInt"] = _0xb35d95 => {
+    return JSON.parse(JSON.stringify(_0xb35d95, (_0x2ba975, _0x27c54a) => typeof _0x27c54a === "bigint" ? _0x27c54a.toString() : _0x27c54a));
   };
-  static ['isMnemonic'](_0x23fbea) {
-    return a6_0x5b2244.validateMnemonic(_0x23fbea);
+  static ["isMnemonic"](_0x2a4802) {
+    return a7_0x5e8584.validateMnemonic(_0x2a4802);
   }
-  static ['isPrivateKey'](_0xf0dec) {
-    const _0x4811d8 = /^[a-fA-F0-9]{64}$/;
-    return _0x4811d8.test(_0xf0dec);
+  static ["isPrivateKey"](_0x18f595) {
+    const _0x137484 = _0x18f595.replace(/^0x/, '');
+    const _0x4714d5 = /^[a-fA-F0-9]{64}$/;
+    return _0x4714d5.test(_0x137484);
   }
-  static ['determineType'](_0x2701d8) {
-    if (this.isMnemonic(_0x2701d8)) {
+  static ['determineType'](_0x310726) {
+    if (this.isMnemonic(_0x310726)) {
       return "Secret Phrase";
     } else {
-      return this.isPrivateKey(_0x2701d8) ? "Private Key" : "Unknown";
+      return this.isPrivateKey(_0x310726) ? "Private Key" : "Unknown";
     }
   }
-  static ['generateNonce']() {
+  static ["generateNonce"]() {
     return ethers.hexlify(ethers.randomBytes(0x10));
   }
-  static ["isToday"](_0x56a0e2) {
-    const _0x230f55 = new Date(_0x56a0e2);
-    const _0x59918d = new Date();
-    _0x59918d.setHours(0x0, 0x0, 0x0, 0x0);
-    const _0x592db1 = new Date(_0x230f55);
-    _0x592db1.setHours(0x0, 0x0, 0x0, 0x0);
-    return !!(_0x592db1.getTime() === _0x59918d.getTime());
+  static ['isToday'](_0x3d99fb) {
+    const _0x562c51 = new Date(_0x3d99fb);
+    const _0x2a21e5 = new Date();
+    _0x2a21e5.setHours(0x0, 0x0, 0x0, 0x0);
+    const _0x1909af = new Date(_0x562c51);
+    _0x1909af.setHours(0x0, 0x0, 0x0, 0x0);
+    return !!(_0x1909af.getTime() === _0x2a21e5.getTime());
   }
-  static ["decodeDataUsingAbi"]() {}
+  static ["findFunctionBySelector"](_0x1104a1, _0x573fd3) {
+    for (const _0x47c237 of _0x573fd3) {
+      for (const _0x33e3ab of _0x47c237) {
+        if (_0x33e3ab.type === "function") {
+          const _0x1155df = _0x33e3ab.name + '(' + _0x33e3ab.inputs.map(_0x3abb9d => _0x3abb9d.type).join(',') + ')';
+          const _0x3c5727 = '0x' + ethers.keccak256(ethers.toUtf8Bytes(_0x1155df)).slice(0x0, 0x8);
+          if (_0x3c5727.includes(_0x1104a1)) {
+            console.log("Function found: " + _0x1155df);
+            return _0x1155df;
+          }
+        }
+      }
+    }
+    console.log("Function not found");
+    return null;
+  }
 static ["ASC"]() {
   console.log('\x1b[34m%s\x1b[0m', `
    █████████   █████ ███████████   ██████████   ███████████      ███████    ███████████       █████████    █████████    █████████
