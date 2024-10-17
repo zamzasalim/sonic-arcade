@@ -9,7 +9,7 @@
 
 # SONIC-ARCADE
 
-- Join Testnet    : https://airdrop.soniclabs.com/?ref=eekh38
+- Join Testnet    : https://airdrop.soniclabs.com/?ref=fo3myv
 - Claim Faucet    : https://testnet.soniclabs.com/account
 - Get Smartwallet : https://arcade.soniclabs.com/
 
