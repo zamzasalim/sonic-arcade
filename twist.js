@@ -32,7 +32,7 @@ class Twist {
     const _0x3dce94 = _0x4efdd1.totalPoints ?? '-';
     const _0x1fcfc9 = _0x4efdd1.today ?? '-';
 
-    const logText = `[${accountIndex}] | Stat: ${_0x473819} | ${_0x5e0f7d}`;
+    const logText = `[${accountIndex}] Stat: ${_0x473819} | ${_0x5e0f7d}`;
 
     this.twisters.put(_0x19fcde, { 'text': logText });
 
